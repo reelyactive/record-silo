@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+const http = require('http');
+const express = require('express');
+const bodyParser = require('body-parser');
+const RecordSilo = require('../lib/recordsilo.js');
+
+
+const PORT = process.env.PORT || 3001;
+
+
+let app = express();
+app.use(bodyParser.json({ limit: "50mb", extended: true }));
+
+let server = http.createServer(app);
+server.listen(PORT, () => {
+  console.log('record-silo instance is listening on port', PORT);
+});
+
+const options = { app: app };
+
+let records = new RecordSilo(options);
