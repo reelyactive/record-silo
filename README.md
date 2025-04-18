@@ -15,7 +15,52 @@ Run the record-silo with:
 
     npm start
 
-POST a record (.jpg/.jpeg/.png/.gif) to http://localhost:3001/store/records/ as multipart/form-data with key "record" and the record file as its property.
+POST a record (.jpg/.jpeg/.png/.gif) to http://localhost:3001/store/records/ as detailed in the REST API section below.
+
+
+REST API
+--------
+
+The __record-silo__'s REST API includes the following base route:
+- /records _for storing and retrieving record files_
+
+### POST /records
+
+Create a record.  The _fileName_ of the record is provided in the response.
+
+#### Example request
+
+| Method | Route    | Content-Type        |
+|:-------|:---------|:--------------------|
+| POST   | /records | multipart/form-data |
+
+The form-data must contain both a record and a deviceId, as follows:
+
+| Key      | Value        | Example      |
+|:---------|:-------------|:-------------|
+| record   | (file)       | image.jpg    |
+| deviceId | (hex string) | fee150bada55 |
+
+The following Postman screenshot details a valid request:
+
+![Postman POST /records](https://reelyactive.github.io/record-silo/images/postman-post-records.png)
+
+#### Example response
+
+    {
+      "_meta": {
+        "message": "created",
+        "statusCode": 201
+      },
+      "_links": {
+        "self": {
+          "href": "http://localhost:3001/store/records/"
+        }
+      },
+      "records": {
+        "fileName": "fee150bada55-250418-123456-image.jpg"
+      }
+    }
 
 
 Contributing
