@@ -15,7 +15,7 @@ Run the record-silo with:
 
     npm start
 
-POST a record (.jpg/.jpeg/.png/.gif) to http://localhost:3001/store/records/ as detailed in the REST API section below.
+POST a record (.jpg/.jpeg/.png/.gif) to http://localhost:3001/records/device/4ec04d7e57e4/2 as detailed in the REST API section below.
 
 
 REST API
@@ -24,22 +24,97 @@ REST API
 The __record-silo__'s REST API includes the following base route:
 - /records _for storing and retrieving record files_
 
-### POST /records
+### GET /records
 
-Create a record.  The _fileName_ of the record is provided in the response.
+Retrieve a list of all records.
 
 #### Example request
 
-| Method | Route    | Content-Type        |
-|:-------|:---------|:--------------------|
-| POST   | /records | multipart/form-data |
+| Method | Route    | Content-Type     |
+|:-------|:---------|:-----------------|
+| GET    | /records | application/json |
 
-The form-data must contain both a record and a deviceId, as follows:
+#### Example response
+
+    {
+      "_meta": {
+        "message": "ok",
+        "statusCode": 200
+      },
+      "_links": {
+        "self": {
+          "href": "http://localhost:3001/records"
+        }
+      },
+      "devices": {
+        "4ec04d7e57e4/2": [
+          "4ec04d7e57e4-2-250512-123456-image.jpg",
+          "4ec04d7e57e4-2-250512-223344-image.jpg"
+        ]
+      }
+    }
+
+
+### GET /records/{filename}
+
+Retrieve a record with the given _filename_.
+
+#### Example request
+
+| Method | Route                                           | Content-Type     |
+|:-------|:------------------------------------------------|:-----------------|
+| GET    | /records/4ec04d7e57e4-2-250512-123456-image.jpg | application/json |
+
+#### Example response
+
+If it exists, the file is returned.  Else a 404 Not Found error is returned.
+
+
+### GET /records/device/{id}/{type}
+
+Retrieve a list of records associated with the given device _id_ and _type_.
+
+#### Example request
+
+| Method | Route                          | Content-Type     |
+|:-------|:-------------------------------|:-----------------|
+| GET    | /records/device/4ec04d7e57e4/2 | application/json |
+
+#### Example response
+
+    {
+      "_meta": {
+        "message": "ok",
+        "statusCode": 200
+      },
+      "_links": {
+        "self": {
+          "href": "http://localhost:3001/records/device/4ec04d7e57e4/2"
+        }
+      },
+      "devices": {
+        "4ec04d7e57e4/2": [
+          "4ec04d7e57e4-2-250512-123456-image.jpg",
+          "4ec04d7e57e4-2-250512-223344-image.jpg"
+        ]
+      }
+    }
+
+### POST /records/device/{id}/{type}
+
+Create a record associated with the given device _id_ and _type_.  The file name of the record is provided in the response.
+
+#### Example request
+
+| Method | Route                          | Content-Type        |
+|:-------|:-------------------------------|:--------------------|
+| POST   | /records/device/4ec04d7e57e4/2 | multipart/form-data |
+
+The form-data must contain a record as follows:
 
 | Key      | Value        | Example      |
 |:---------|:-------------|:-------------|
 | record   | (file)       | image.jpg    |
-| deviceId | (hex string) | fee150bada55 |
 
 The following Postman screenshot details a valid request:
 
@@ -54,11 +129,13 @@ The following Postman screenshot details a valid request:
       },
       "_links": {
         "self": {
-          "href": "http://localhost:3001/store/records/"
+          "href": "http://localhost:3001/records/device/4ec04d7e57e4/2"
         }
       },
       "records": {
-        "fileName": "fee150bada55-250418-123456-image.jpg"
+        "4ec04d7e57e4-2-250512-123456-image.jpg": {
+          "timestamp": 1747085146380
+        }
       }
     }
 
