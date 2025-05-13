@@ -46,11 +46,9 @@ Retrieve a list of all records.
           "href": "http://localhost:3001/records"
         }
       },
-      "devices": {
-        "4ec04d7e57e4/2": [
-          "4ec04d7e57e4-2-250512-123456-image.jpg",
-          "4ec04d7e57e4-2-250512-223344-image.jpg"
-        ]
+      "records": {
+        "250512-123456-device-4ec04d7e57e4-2-image.jpg": {},
+        "250512-223344-device-4ec04d7e57e4-2-image.jpg": {}
       }
     }
 
@@ -63,7 +61,7 @@ Retrieve a record with the given _filename_.
 
 | Method | Route                                           | Content-Type     |
 |:-------|:------------------------------------------------|:-----------------|
-| GET    | /records/4ec04d7e57e4-2-250512-123456-image.jpg | application/json |
+| GET    | /records/250512-123456-device-4ec04d7e57e4-2-image.jpg | application/json |
 
 #### Example response
 
@@ -92,11 +90,13 @@ Retrieve a list of records associated with the given device _id_ and _type_.
           "href": "http://localhost:3001/records/device/4ec04d7e57e4/2"
         }
       },
-      "devices": {
-        "4ec04d7e57e4/2": [
-          "4ec04d7e57e4-2-250512-123456-image.jpg",
-          "4ec04d7e57e4-2-250512-223344-image.jpg"
-        ]
+      "records": {
+        "250512-123456-device-4ec04d7e57e4-2-image.jpg": {
+          "device": "4ec04d7e57e4/2"
+        },
+        "250512-223344-device-4ec04d7e57e4-2-image.jpg": {
+          "device": "4ec04d7e57e4/2"
+        }
       }
     }
 
@@ -133,7 +133,8 @@ The following Postman screenshot details a valid request:
         }
       },
       "records": {
-        "4ec04d7e57e4-2-250512-123456-image.jpg": {
+        "250512-123456-device-4ec04d7e57e4-2-image.jpg": {
+          "device": "4ec04d7e57e4/2",
           "timestamp": 1747085146380
         }
       }
