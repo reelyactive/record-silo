@@ -10,7 +10,7 @@ const STATUS_CREATED = 201;
 const STATUS_BAD_REQUEST = 400;
 const STATUS_NOT_FOUND = 404;
 const MESSAGE_BAD_REQUEST = 'Bad Request [400].  An error likely occurred on the server.';
-const MESSAGE_NOT_FOUND = 'Record Not Found [404].';
+const MESSAGE_NOT_FOUND = 'Record(s) Not Found [404].';
 const RECORDS_ROUTE = '/records';
 
 
