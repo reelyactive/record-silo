@@ -5,13 +5,13 @@
     "name": "reelyActive",
     "email": "info@reelyactive.com"
   },
-  "description": "A data silo for digital records in context-aware physical spaces.  We believe in an open Internet of Things.",
+  "description": "A data silo for digital records produced by IoT devices.  We believe in an open Internet of Things.",
   "keywords": [
     "reelyActive",
     "IoT",
     "records"
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "node": ">=18.0.0"
   },
