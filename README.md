@@ -1,7 +1,11 @@
 record-silo
 ===========
 
-Data silo for digital records in context-aware physical spaces.
+The __record-silo__ is a digital records store and an accessory module of [Pareto Anywhere](https://www.reelyactive.com/pareto/anywhere/) open source IoT middleware.
+
+![Overview of record-silo](https://reelyactive.github.io/record-silo/images/overview.png)
+
+Specifically, the __record-silo__ stores digital images on the local filesystem, providing an API for storage and retrieval.  The __record-silo__ can run standalone, even on resource-constrained devices.
 
 
 Quick Start
