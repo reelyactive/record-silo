@@ -132,19 +132,45 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xxl-6">
-          <p class="lead text-center mt-4" id="loading">
-            <span class="badge bg-primary">
-              <i class="fas fa-info-circle"></i>
-            </span>
-            &nbsp; GET /records in progress...
-          </p>
-          <p class="lead text-center mt-4" id="error" hidden>
-            <span class="badge bg-danger">
-              <i class="fas fa-skull-crossbones"></i>
-            </span>
-            &nbsp; <span id="errorMessage"></span>
-          </p>
-          <div id="visualisation" class="mt-4" hidden></div>
+          <nav class="mt-5">
+            <div class="nav nav-tabs" role="tablist">
+              <button class="nav-link active" id="humantab"
+                      data-bs-toggle="tab" data-bs-target="#humancontent"
+                      type="button" role="tab" aria-controls="humancontent"
+                      aria-selected="true">
+                <i class="fas fa-user-check"></i> &nbsp; Human-readable
+              </button>
+              <button class="nav-link" id="machinetab" data-bs-toggle="tab"
+                      data-bs-target="#machinecontent" type="button" role="tab"
+                      aria-controls="machinecontent" aria-selected="false">
+                <i class="fas fa-code"></i> &nbsp; Machine-readable
+              </button>
+            </div>
+          </nav>
+          <div class="tab-content mb-5">
+            <!-- Human-readable content pane -->
+            <div class="tab-pane fade show active" id="humancontent"
+                 role="tabpanel" aria-labelledby="humantab">
+              <p class="lead text-center mt-4" id="loading">
+                <span class="badge bg-primary">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                &nbsp; GET /records in progress...
+              </p>
+              <p class="lead text-center mt-4" id="error" hidden>
+                <span class="badge bg-danger">
+                  <i class="fas fa-skull-crossbones"></i>
+                </span>
+                &nbsp; <span id="errorMessage"></span>
+              </p>
+              <div id="records" class="mt-4" hidden></div>
+            </div>
+            <!-- Machine-readable content pane -->
+            <div class="tab-pane fade" id="machinecontent" role="tabpanel"
+                 aria-labelledby="machinetab">
+              <pre id="jsonResponse" class="my-4"></pre>
+            </div>
+          </div>
           <p id="returnbutton" class="text-center mb-5">
             <a href="/records/" class="btn btn-outline-primary">
               <i class="fas fa-redo"></i> &nbsp; /records
@@ -164,5 +190,6 @@
     <!-- Optional JavaScript -->
     <script defer src="/record-silo/js/fontawesome-reelyactive.min.js"></script>
     <script src="/record-silo/js/bootstrappyactive.bundle.min.js"></script>
+    <script src="/record-silo/js/records.js"></script>
   </body>
 </html>
